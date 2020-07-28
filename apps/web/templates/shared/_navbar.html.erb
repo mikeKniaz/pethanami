@@ -1,0 +1,10 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">PetHanami</a>
+  <%= link_to 'Users', routes.users_path %>
+  <%= link_to 'Projects', routes.projects_path %>
+  <%=
+    form_for :session, routes.session_path, method: :delete do
+      submit 'Sign out'
+    end
+  %>
+</nav>

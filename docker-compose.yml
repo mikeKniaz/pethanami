@@ -1,0 +1,27 @@
+version: '2'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432/tcp
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: pethanami_development
+      POSTGRES_USER: pethanami
+      POSTGRES_PASSWORD: pethanami
+  sin:
+    build: ../petsinatra
+    command: ruby app.rb
+    ports:
+      - 4567:4567/tcp
+  web:
+    build: .
+    command: hanami server
+    ports:
+      - 2300:2300/tcp
+    depends_on:
+      - postgres
+      - sin
+    links:
+      - postgres
+      - sin

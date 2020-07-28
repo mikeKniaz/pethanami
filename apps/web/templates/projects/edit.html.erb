@@ -1,0 +1,21 @@
+<h2><%= project.name %></h2>
+
+<%=
+  form_for :project, routes.project_path(project.id), method: :patch do
+    div class: 'input' do
+      values = pms.map { |pm| [pm[:name], pm[:id]] }.to_h
+      label  :pm
+      select :user_id, values, class: 'select2-js'
+    end
+
+    div class: 'input' do
+      values = devs.map { |dev| [dev[:name], dev[:id]] }.to_h
+      label  :devs
+      select :dev_ids, values, multiple: true, options: { selected: selected_devs.map{ |s| s[:id] } }, class: 'select2-js'
+    end
+
+    div class: 'controls' do
+      submit 'Update', class: 'btn btn-success'
+    end
+  end
+%>

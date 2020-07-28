@@ -1,0 +1,15 @@
+<h2>All Projects</h2>
+
+<% if projects.any? %>
+  <table class="table">
+    <% projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= link_to 'show', routes.edit_project_path(project.id), class: 'btn btn-primary'%></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="placeholder">There are no projects yet.</p>
+<% end %>
+<a class='btn btn-primary' href="/projects/new">New Project</a>

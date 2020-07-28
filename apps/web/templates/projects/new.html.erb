@@ -1,0 +1,31 @@
+<h2>Add Project</h2>
+
+<% unless params.valid? %>
+  <div class="errors">
+    <h3>There was a problem with your submission</h3>
+    <ul>
+      <% params.error_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%=
+  form_for :project, '/projects' do
+    div class: 'input' do
+      label      :name
+      text_field :name
+    end
+
+    div class: 'input' do
+      values = pms.map { |pm| [pm[:name], pm[:id]] }.to_h
+      label  :pm
+      select :user_id, values
+    end
+
+    div class: 'controls' do
+      submit 'Create Project', class: 'btn btn-success'
+    end
+  end
+%>

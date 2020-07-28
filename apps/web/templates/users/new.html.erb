@@ -1,0 +1,31 @@
+<h2>Add user</h2>
+
+<% unless params.valid? %>
+  <div class="errors">
+    <h3>There was a problem with your submission</h3>
+    <ul>
+      <% params.error_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%=
+  form_for :user, '/users' do
+    div class: 'input' do
+      label      :name
+      text_field :name
+    end
+
+    div class: 'input' do
+      values = Hash['Dev' => 'dev', 'PM' => 'pm', 'QA' => 'qa']
+      label  :position
+      select :position, values
+    end
+
+    div class: 'controls' do
+      submit 'Create User', class: 'btn btn-success'
+    end
+  end
+%>

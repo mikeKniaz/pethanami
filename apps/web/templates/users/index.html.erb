@@ -1,0 +1,15 @@
+<h3>All users</h3>
+
+<% if users.any? %>
+  <table class="table">
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.position.upcase %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="placeholder">There are no users yet.</p>
+<% end %>
+<a class='btn btn-primary' href="/users/new">New User</a>
